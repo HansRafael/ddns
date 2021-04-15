@@ -1,0 +1,94 @@
+######################
+##      app.js      ##  
+######################
+
+-Início da aplicação 
+nodemon app
+
+#Quem sou?
+Helmet, responsável por dar mais segurança a aplicação
+- [x] Seta novos Headers
+
+### Argumentos esperados
+Exemplo de requisição:
+app.use(helmet())
+
+#######################
+##     logger.js     ##  
+#######################
+
+#Quem sou?
+Winston, responsável por registrar os registros/erros ao longo do código
+- [x] Serve como uma simples e universal biblioteca de loggs
+- [x] Suporte para multiplos transportes, e cada logger tem:
+      *multiplos transportes
+      *configurados em diferentes levels
+- [x] Assim, conseguimos salvar tds os erros em uma database
+
+
+### Argumentos esperados
+Exemplo de requisição:
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.simple(),
+    transports: [
+        new winston.transports.Console(),
+    ],
+});
+
+module.exports = {
+    logger
+}
+
+#######################
+##     config.js     ##  
+#######################
+
+-diretório onde colocamos as:
+    *apis -> serve para pegarmos os ips
+    *server -> porta em que a aplicação app.js irá rodar
+    #ddns -> configuração do Godaddy
+
+
+
+##############################################
+#########   DIRETÓRIO:    services   #########
+##############################################
+
+######################
+##      ddns.js     ##  
+######################
+
+#Quem sou?
+Promises, classes utilizadas pela maioria das bibliotecas de requisições HTTP
+.then() => callback de sucesso
+.catch() => erros
+
+________EXEMPLO_______
+const divDelayed = (a, b) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (b == 0) reject('O valor de B não pode ser zero!');
+
+    resolve(a / b);
+  }, 2000);
+});
+
+_______CHAMANDO A FUNCAO_____
+divDelayed(10, 0)
+  .then(resp => console.log(`Sucesso: ${resp}`))
+  .catch(err => console.log(err));
+
+a saida será //O valor de B não pode ser zero! (esta dentro do 'reject')
+
+
+#Quem sou?
+Axios, cliente que realiza requisições HTTP
+
+- [x] Faz requisições http no Node.js;
+- [x] Suporta a API de Promises;
+- [x] Intercepta requisições e respostas (request & response);
+- [x] Cancela requisições;
+- [x] Transforma os dados em JSON automaticamente;
+- [x] No lado cliente suporta a proteção contra XRSF;
+- [x] Transforma os dados da requisição e da resposta.
